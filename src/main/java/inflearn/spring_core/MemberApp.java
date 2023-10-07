@@ -1,15 +1,17 @@
 package inflearn.spring_core;
 
+import inflearn.spring_core.config.AppConfig;
 import inflearn.spring_core.member.Grade;
 import inflearn.spring_core.member.Member;
 import inflearn.spring_core.member.MemberService;
-import inflearn.spring_core.member.MemberServiceImpl;
 
 public class MemberApp {
 
     public static void main(String[] args) {
 
-        MemberService memberService = new MemberServiceImpl();
+//        MemberService memberService = new MemberServiceImpl();//직접 객체생성하던걸
+        AppConfig appConfig = new AppConfig(); // AppConfig를 통해 생성받고 받아오는 걸로 바꿈.
+        MemberService memberService = appConfig.memberService();
         Member member = new Member(1L, "memberA", Grade.VIP);
         memberService.join(member); // 회원가입이 됨.
 

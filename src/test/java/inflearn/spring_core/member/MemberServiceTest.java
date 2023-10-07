@@ -1,5 +1,7 @@
 package inflearn.spring_core.member;
 
+import inflearn.spring_core.config.AppConfig;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +10,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 // 테스트
 class MemberServiceTest {
 
-    MemberService memberService = new MemberServiceImpl();
+    private MemberService memberService; // 수정
+
+    //추가
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
 
     @DisplayName("회원가입 테스트")
     @Test

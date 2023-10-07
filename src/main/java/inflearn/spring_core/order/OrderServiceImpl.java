@@ -3,17 +3,23 @@ package inflearn.spring_core.order;
 import inflearn.spring_core.discount.DiscountPolicy;
 import inflearn.spring_core.member.Member;
 import inflearn.spring_core.member.MemberRepository;
-import inflearn.spring_core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
 //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); step1. 이거 삭제
 //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy(); step2. 이거 삭제
-    private DiscountPolicy discountPolicy; // step3. 인터페이스에만 의존하도록 설계와 코드를 변경
+    private final DiscountPolicy discountPolicy; // step3. 인터페이스에만 의존하도록 설계와 코드를 변경
     // 실제 실행을 해보면 NPE(null pointer exception)가 발생한다.
 
-
+    // 생성자 추가
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+        /*
+        discountPolicy 얘는 어떤 discountPolicy 구현체를 넣어줄 지 전혀 모른다.(클래스 정보x)
+         */
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
