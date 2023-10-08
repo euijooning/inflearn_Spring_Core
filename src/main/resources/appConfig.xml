@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 스프링 빈 설정을 위한 네임스페이스와 스키마 위치 설정 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- memberService 빈 설정 -->
+    <bean id="memberService" class="inflearn.spring_core.member.MemberServiceImpl">
+        <!-- memberService 빈의 생성자에 memberRepository 빈을 주입 -->
+        <constructor-arg name="memberRepository" ref="memberRepository" />
+    </bean>
+
+    <!-- memberRepository 빈 설정 -->
+    <bean id="memberRepository" class="inflearn.spring_core.member.MemoryMemberRepository" />
+
+    <!-- orderService 빈 설정 -->
+    <bean id="orderService" class="inflearn.spring_core.order.OrderServiceImpl">
+        <!-- orderService 빈의 생성자에 memberRepository와 discountPolicy 빈을 주입 -->
+        <constructor-arg name="memberRepository" ref="memberRepository" />
+        <constructor-arg name="discountPolicy" ref="discountPolicy" />
+    </bean>
+
+    <!-- discountPolicy 빈 설정 -->
+    <bean id="discountPolicy" class="inflearn.spring_core.discount.RateDiscountPolicy" />
+</beans>
