@@ -12,6 +12,13 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountPolicy discountPolicy; // step3. 인터페이스에만 의존하도록 설계와 코드를 변경
     // 실제 실행을 해보면 NPE(null pointer exception)가 발생한다.
 
+
+    //테스트 용도 추가
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
+    }
+
+
     // 생성자 추가
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
