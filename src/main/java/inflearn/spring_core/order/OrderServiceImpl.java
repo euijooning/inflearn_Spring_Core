@@ -3,7 +3,10 @@ package inflearn.spring_core.order;
 import inflearn.spring_core.discount.DiscountPolicy;
 import inflearn.spring_core.member.Member;
 import inflearn.spring_core.member.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository;
@@ -20,6 +23,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     // 생성자 추가
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
