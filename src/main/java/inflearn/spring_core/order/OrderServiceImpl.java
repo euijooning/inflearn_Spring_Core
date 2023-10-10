@@ -3,10 +3,13 @@ package inflearn.spring_core.order;
 import inflearn.spring_core.discount.DiscountPolicy;
 import inflearn.spring_core.member.Member;
 import inflearn.spring_core.member.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
+@Getter
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository;
@@ -14,18 +17,17 @@ public class OrderServiceImpl implements OrderService {
 
 
 
-    //테스트 용도 추가
-    public MemberRepository getMemberRepository() {
-        return memberRepository;
-    }
+//    //테스트 용도 추가
+//    public MemberRepository getMemberRepository() {
+//        return memberRepository;
+//    }
 
 
-    // 생성자 추가
-    @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
+//    // 생성자 추가 //@AutoWired 빼버림
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
