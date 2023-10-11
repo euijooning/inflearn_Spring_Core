@@ -1,5 +1,6 @@
 package inflearn.spring_core.order;
 
+import inflearn.spring_core.annotation.MainDiscountPolicy;
 import inflearn.spring_core.discount.DiscountPolicy;
 import inflearn.spring_core.member.Member;
 import inflearn.spring_core.member.MemberRepository;
@@ -13,9 +14,9 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountPolicy discountPolicy;
 
     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) { // 여기 변경
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) { // 변경
         this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy; // 여기 변경
+        this.discountPolicy = discountPolicy;
     }
 
     //테스트 용도 추가

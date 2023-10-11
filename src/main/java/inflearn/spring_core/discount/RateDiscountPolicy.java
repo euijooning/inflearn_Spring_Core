@@ -1,12 +1,12 @@
 package inflearn.spring_core.discount;
 
+import inflearn.spring_core.annotation.MainDiscountPolicy;
 import inflearn.spring_core.member.Grade;
 import inflearn.spring_core.member.Member;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
-@Primary
+@MainDiscountPolicy //만든 어노테이션!
 public class RateDiscountPolicy implements DiscountPolicy {
 
     private int discountPercent = 10; // 할인율 10%
