@@ -1,16 +1,15 @@
 package inflearn.spring_core.common;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.UUID;
 
-// 스프링 빈으로 등록되는 클래스를 나타내는 어노테이션
 @Component
-// 스프링 빈의 스코프를 "request"로 지정
-@Scope(value = "request")
+@Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS) // 여기를 추가
 public class MyLogger {
     private String uuid; // UUID를 저장하는 변수
     private String requestURL; // HTTP 요청의 URL을 저장하는 변수
